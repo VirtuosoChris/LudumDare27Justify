@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+seconds=10;
+
+intro = "<p>The year is 2025.  Economic collapse and space radiation has caused a sharp decline in the earth's population.  Only rare,expensive, genetically modified crops grow in the post apocalyptic soil.</p>";
+
+secondParagraph = "<p>You are a citizen of a small city-state that has managed to survive these conditions.  With all the large governments no longer operating, direct democracy has become a viable system for governance.  With the authorities that run their lives no longer on an incomprehensible scale, and brought together by the hardships of their time, all citizens take an active role in their culture.  All citizens have their opinions heard.  If not for the space radiation, it would be paradise.  (At least for the majority.  By definition.)</p>";
+
+thirdParagraph = "<p>However, with energy and food resources at their current meager level, large population growths are not sustainable.  In order to survive, you and your fellow citizens have made the decision to reduce the current population of your city by 50%.  In a nearly unanimous vote, you have also decided that arbitrary selection of the survivors would be potentially wasteful.  Instead, you have opted to give each member of the community a generous 10 seconds in the public assembly to explain why the community cannot live without their contribution.</p>";
+
+fourthParagraph = "<p>Those selected by their community to make the ultimate sacrifice will report to the disintegration chambers in one week's time to be painlessly recycled.  This is the most humane fate possible, since exile puts the individual at risk from the mutant cannibal raccoon virus, which turns one into a monstrosity that puts their community at risk.</p>";
+
+fifthParagraph = "<p>You have waited nervously in line for four hours.  But now you step up to the podium.  The roaring applause from the previous citizen's speech dies down.  Silence.  It is your turn.</p>";
+
+OkayString = "BZZZT! A polite applause begins and dies out as you are shoved quickly from the stage .  You walk away still a little nervious but reassuring yourself that you did your best.  You get the feeling that your community doesn't see you as indispensable, but your friends reassure you that you only need to be seen as 'above average'";
+
+GoodString = "BZZZT!  The room erupts into thunderous applause as you are herded from the podium. You feel a little bit relieved.  Hopefully your peers found what you said worthwhile <i>enough</i>.";
+
+boxText="";
+
+function submit(){
+	
+	goToLoc = "phphello.php?plea=" + boxText + " ...BZZZZZZZT!";
+	window.location = goToLoc;
+	
+}
+
+
+function countdown(){
+ seconds--;
+ if(seconds>0){
+ text = seconds + " seconds";
+ document.getElementById("timerDiv").innerHTML = "<p>"+text+"</p>";
+ }else{
+   
+  document.getElementById("timerDiv").innerHTML = "";
+ }
+}
+
+function displayDate()
+{
+document.getElementById("demo").innerHTML=Date();
+}
+
+
+function secondLast()
+{ 
+ document.getElementById("mainDiv").innerHTML += "<p>You have 10 seconds.</p>"
+
+
+ setTimeout(final, 5000); 
+ 
+}
+
+function final()
+{ 
+ document.getElementById("mainDiv").innerHTML += "<p>Go.</p>" 
+ //document.getElementById("mainDiv").innerHTML += "<form name='chrisform'><input type='text' name='txtJob'></form>";
+ 
+ document.getElementById("mainDiv").innerHTML +="<div id='timerDiv'>";
+ document.getElementById("mainDiv").innerHTML+= "</div>"
+ 
+ document.getElementById("mainDiv").innerHTML +="<div id='subDiv'><textarea id='abc' name='abc' rows='4' cols='150'/>"
+ document.getElementById("mainDiv").innerHTML+= "</div>"
+ 
+ setInterval(countdown,1000);
+ document.getElementById("abc").focus();
+ 
+setTimeout(finished,10000);
+ 
+ }
+
+ function endgame(){
+  //final stuff
+ footer = "The game isn't over yet!  Would you like to participate in the vote and find out if you live or die?  Hit the button below to submit your speech to the game's subreddit and be redirected.";
+ 
+ buttonString = "<br><button type='button'  onclick='submit()'>SUBMIT!";
+ 
+ document.getElementById("mainDiv").innerHTML += footer;
+ document.getElementById("mainDiv").innerHTML += buttonString;
+ document.getElementById("mainDiv").innerHTML +="</button> ";
+
+ }
+ 
+function finished(){
+///make reddit post
+///redirect
+
+ boxText = document.getElementById("abc").value
+ 
+ if (boxText=="")
+ {
+	document.getElementById("subDiv").innerHTML ="<p>The sound of the buzzer breaks the long silence.  Your peers stare disapprovingly at you.  You had an opportunity to explain to your community why they should continue to sacrifice by allowing you to live, and you gave them only silence in return.  Fortunately, you have a feeling that you won't have much longer to kick yourself over this misstep.</p>";
+ }
+ 
+ else{
+ 
+ 
+ if(boxText.length < 20){
+	document.getElementById("subDiv").innerHTML ="<p>"+OkayString;
+	document.getElementById("subDiv").innerHTML +="</p>";
+ }else{
+	document.getElementById("subDiv").innerHTML ="<p>"+GoodString+"</p>";
+	document.getElementById("subDiv").innerHTML +="</p>";
+ }
+
+	
+ setTimeout(endgame,2500);
+ 
+ 
+ }
+}
+
+function introP(){
+	document.getElementById("mainDiv").innerHTML += intro;
+	setTimeout(secondP, 5000);
+}
+
+function secondP(){
+	document.getElementById("mainDiv").innerHTML += secondParagraph;
+	setTimeout(thirdP, 13000);
+}
+
+function thirdP(){
+	document.getElementById("mainDiv").innerHTML += thirdParagraph;
+	setTimeout(fourthP, 13000);
+}
+
+
+function fourthP(){
+	document.getElementById("mainDiv").innerHTML += fourthParagraph;
+	setTimeout(fifthP, 13000);
+}
+
+
+function fifthP(){
+	document.getElementById("mainDiv").innerHTML += fifthParagraph;
+	setTimeout(secondLast, 10000);
+}
+
+
+</script>
+</head>
+<body>
+<title>
+LD27
+</title>
+<h1>Justify</h1>
+<h2>by Christopher Pugh</h2>
+
+
+<div id="mainDiv">
+
+</div>
+
+
+
+
+<script>
+<!-- setInterval>
+setTimeout(introP, 500);
+
+</script>
+
+</body>
+</html> 
